@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuard — Scanner de sécurité web pour PMEs</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-index">
+
+    <!-- ── NAVIGATION ── -->
+    <nav class="nav">
+        <div class="nav-brand">
+            <span class="nav-logo">⬡</span>
+            <span class="nav-name">CyberGuard</span>
+        </div>
+        <div class="nav-links">
+            <a href="#features">Fonctionnalités</a>
+            <a href="#pricing" class="btn-nav">Tarifs</a>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+        <div class="hero-grid-bg"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Scanner actif — Analyse en temps réel
+            </div>
+
+            <h1 class="hero-title">
+                Votre site web<br>
+                est-il vraiment<br>
+                <span class="gradient-text">sécurisé ?</span>
+            </h1>
+
+            <p class="hero-sub">
+                Analyse SSL, HTTPS, headers de sécurité et score IA en 30 secondes.<br>
+                Rapport PDF professionnel inclus.
+            </p>
+
+            <!-- ── FORMULAIRE PRINCIPAL ── -->
+            <div class="scan-form" id="scanForm">
+                <div class="scan-input-wrapper">
+                    <span class="scan-prefix">https://</span>
+                    <input
+                        type="text"
+                        id="urlInput"
+                        class="scan-input"
+                        placeholder="votresite.com"
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+                    <button class="scan-btn" id="scanBtn" onclick="startScan()">
+                        <span class="btn-text">Analyser</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+                <p class="scan-hint">Gratuit · Sans inscription · Résultats immédiats</p>
+                <div class="scan-error" id="scanError"></div>
+            </div>
+
+            <!-- ── LOADING STATE ── -->
+            <div class="scan-loading" id="scanLoading">
+                <div class="terminal-window">
+                    <div class="terminal-bar">
+                        <span class="t-dot red"></span>
+                        <span class="t-dot yellow"></span>
+                        <span class="t-dot green"></span>
+                        <span class="t-title">cyberguard — scan en cours</span>
+                    </div>
+                    <div class="terminal-body" id="terminalBody">
+                        <div class="t-line" id="tl1">$ init scan protocol...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── STATS ── -->
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-num">87%</span>
+                <span class="stat-label">des PMEs ont au moins 3 failles critiques</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num">30s</span>
+                <span class="stat-label">pour obtenir votre rapport complet</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num">6</span>
+                <span class="stat-label">points de contrôle analysés</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-label">Ce qu'on analyse</div>
+            <h2 class="section-title">Un audit complet en quelques secondes</h2>
+
+            <div class="features-grid">
+                <div class="feature-card" style="--delay: 0ms">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Protocole HTTPS</h3>
+                    <p>Vérification du chiffrement de la connexion. Un site HTTP expose vos données en clair.</p>
+                </div>
+                <div class="feature-card" style="--delay: 80ms">
+                    <div class="feature-icon">🎖️</div>
+                    <h3>Certificat SSL</h3>
+                    <p>Validité, date d'expiration et émetteur. Un certificat expiré bloque l'accès à votre site.</p>
+                </div>
+                <div class="feature-card" style="--delay: 160ms">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Headers sécurité</h3>
+                    <p>6 headers critiques vérifiés : CSP, HSTS, X-Frame-Options et plus.</p>
+                </div>
+                <div class="feature-card" style="--delay: 240ms">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Score IA /100</h3>
+                    <p>Algorithme de scoring pondéré avec analyse contextuelle des risques.</p>
+                </div>
+                <div class="feature-card" style="--delay: 320ms">
+                    <div class="feature-icon">💡</div>
+                    <h3>Recommandations</h3>
+                    <p>Top 3 actions prioritaires avec instructions techniques précises.</p>
+                </div>
+                <div class="feature-card" style="--delay: 400ms">
+                    <div class="feature-icon">📄</div>
+                    <h3>Rapport PDF</h3>
+                    <p>Document professionnel téléchargeable, prêt à présenter à votre client ou dirigeant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PRICING (structure prête pour Stripe) ── -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <div class="section-label">Tarifs</div>
+            <h2 class="section-title">Simple et transparent</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Gratuit</div>
+                    <div class="plan-price">0€<span>/mois</span></div>
+                    <ul class="plan-features">
+                        <li>✓ 3 scans / mois</li>
+                        <li>✓ Score + recommandations</li>
+                        <li>✓ Rapport PDF basique</li>
+                        <li class="plan-missing">✗ Monitoring automatique</li>
+                        <li class="plan-missing">✗ Alertes email</li>
+                    </ul>
+                    <button class="plan-btn plan-btn-secondary" onclick="focusInput()">Commencer</button>
+                </div>
+                <div class="pricing-card pricing-card--featured">
+                    <div class="plan-badge">Populaire</div>
+                    <div class="plan-name">Pro</div>
+                    <div class="plan-price">19€<span>/mois</span></div>
+                    <ul class="plan-features">
+                        <li>✓ Scans illimités</li>
+                        <li>✓ Rapport PDF branded</li>
+                        <li>✓ Monitoring hebdomadaire</li>
+                        <li>✓ Alertes email SSL</li>
+                        <li>✓ Support prioritaire</li>
+                    </ul>
+                    <!-- data-stripe-price-id pour futur Stripe -->
+                    <button class="plan-btn plan-btn-primary" data-stripe-price-id="price_XXXXX">
+                        Commencer — 19€/mois
+                    </button>
+                </div>
+                <div class="pricing-card">
+                    <div class="plan-name">Agence</div>
+                    <div class="plan-price">79€<span>/mois</span></div>
+                    <ul class="plan-features">
+                        <li>✓ Tout Pro inclus</li>
+                        <li>✓ White-label (votre logo)</li>
+                        <li>✓ 20 clients max</li>
+                        <li>✓ Accès API</li>
+                        <li>✓ Tableau de bord agence</li>
+                    </ul>
+                    <button class="plan-btn plan-btn-secondary">Contacter</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <span class="nav-logo">⬡</span> CyberGuard
+        </div>
+        <p class="footer-copy">© 2025 CyberGuard MVP. Résultats à titre indicatif.</p>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
